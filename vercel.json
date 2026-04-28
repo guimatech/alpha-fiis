@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/fiis", "destination": "/api/fiis.js" },
+    { "source": "/api/setores", "destination": "/api/setores.js" }
+  ]
+}
