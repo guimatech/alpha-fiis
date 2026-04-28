@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Alpha FIIs - Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-emerald-50 min-h-screen font-sans">
+  <!-- Top bar -->
+  <header class="w-full bg-emerald-600 text-white flex items-center justify-between px-6 py-3">
+    <div class="flex items-center space-x-2">
+      <span class="text-2xl font-bold">Alpha FIIs</span>
+    </div>
+    <div class="flex-1 text-center text-sm">
+      Boa noite, Lucas Guimarães. Patrimônio: R$ 5.013,53
+    </div>
+    <div class="flex items-center space-x-3">
+      <button class="px-3 py-1 bg-red-500 rounded-full text-xs">Foco</button>
+      <button class="px-3 py-1 bg-emerald-800 rounded-full text-xs">Moderado</button>
+      <button class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+        🔔
+      </button>
+      <button class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+        ⚙️
+      </button>
+    </div>
+  </header>
+
+  <main class="flex">
+    <!-- Sidebar -->
+    <nav class="w-56 bg-emerald-700 text-white flex flex-col py-6 space-y-2">
+      <button class="flex items-center px-6 py-2 hover:bg-emerald-800">🏠 <span class="ml-3">Home</span></button>
+      <button class="flex items-center px-6 py-2 hover:bg-emerald-800">💼 <span class="ml-3">Carteira</span></button>
+      <button class="flex items-center px-6 py-2 hover:bg-emerald-800">📈 <span class="ml-3">Mercado</span></button>
+      <button class="flex items-center px-6 py-2 hover:bg-emerald-800">📊 <span class="ml-3">Análises</span></button>
+      <button class="flex items-center px-6 py-2 bg-emerald-900">👤 <span class="ml-3">Perfil</span></button>
+      <button class="flex items-center px-6 py-2 hover:bg-emerald-800">📑 <span class="ml-3">Relatórios</span></button>
+      <button class="flex items-center px-6 py-2 hover:bg-emerald-800">ℹ️ <span class="ml-3">Informações</span></button>
+    </nav>
+
+    <!-- Content -->
+    <section class="flex-1 p-6 grid grid-cols-12 gap-4">
+      <!-- Perfil do Usuário -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4">
+        <h2 class="text-sm font-semibold mb-3">Perfil do Usuário</h2>
+        <div class="space-y-2 text-xs">
+          <div>
+            <span class="block text-gray-500">Nome de Usuário</span>
+            <input class="w-full border rounded px-2 py-1" value="Lucas Guimarães" />
+          </div>
+          <div>
+            <span class="block text-gray-500">Análise de Risco</span>
+            <select class="w-full border rounded px-2 py-1">
+              <option>Moderado</option>
+              <option>Conservador</option>
+              <option>Arrojado</option>
+            </select>
+          </div>
+          <div>
+            <span class="block text-gray-500">Objetivo Pessoal (R$)</span>
+            <input id="objetivo" type="number" class="w-full border rounded px-2 py-1" value="10060.99" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Objetivo Pessoal (gráfico circular simplificado) -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4 flex flex-col items-center justify-center">
+        <h2 class="text-sm font-semibold mb-3">Objetivo Pessoal</h2>
+        <div class="relative w-32 h-32">
+          <svg viewBox="0 0 36 36" class="w-full h-full">
+            <path
+              class="text-emerald-300"
+              stroke="currentColor"
+              stroke-width="4"
+              fill="none"
+              d="M18 2.0845
+                 a 15.9155 15.9155 0 0 1 0 31.831
+                 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path
+              id="progressPath"
+              class="text-emerald-600"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-dasharray="49.8, 100"
+              stroke-linecap="round"
+              fill="none"
+              d="M18 2.0845
+                 a 15.9155 15.9155 0 0 1 0 31.831
+                 a 15.9155 15.9155 0 0 1 0 -31.831" />
+          </svg>
+          <div class="absolute inset-0 flex items-center justify-center flex-col text-xs">
+            <span class="font-bold" id="progressText">49,8%</span>
+            <span class="text-gray-500">atingido</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Análise de Risco (tabela simples) -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4 text-xs">
+        <h2 class="text-sm font-semibold mb-3">Análise de Risco</h2>
+        <div class="flex mb-2 text-center text-white text-xs">
+          <div class="flex-1 bg-red-500 py-1 rounded-l">Score</div>
+          <div class="flex-1 bg-emerald-700 py-1">Conservador</div>
+          <div class="flex-1 bg-emerald-500 py-1">Moderado</div>
+          <div class="flex-1 bg-amber-500 py-1 rounded-r">Arrojado</div>
+        </div>
+        <div class="max-h-40 overflow-y-auto border rounded">
+          <table class="w-full text-center">
+            <tbody>
+              <!-- Apenas alguns scores para exemplo -->
+              <tr class="border-b">
+                <td class="py-1">1</td><td>Rejeitado</td><td>Rejeitado</td><td>Aceito</td>
+              </tr>
+              <tr class="border-b">
+                <td class="py-1">5</td><td>Rejeitado</td><td>Cautela</td><td>Aceito</td>
+              </tr>
+              <tr>
+                <td class="py-1">10</td><td>Aceito</td><td>Aceito</td><td>Aceito</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Simulador de Independência Financeira -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4 text-xs">
+        <h2 class="text-sm font-semibold mb-3">Simulador de Independência Financeira</h2>
+        <div class="space-y-2">
+          <div>
+            <span class="block text-gray-500">Data de Nascimento</span>
+            <input id="nascimento" type="date" class="w-full border rounded px-2 py-1" value="1995-10-09" />
+          </div>
+          <div>
+            <span class="block text-gray-500">Aportes Mensais (R$)</span>
+            <input id="aportes" type="number" class="w-full border rounded px-2 py-1" value="1200" />
+          </div>
+          <div>
+            <span class="block text-gray-500">Salário Desejado (R$)</span>
+            <input id="salario" type="number" class="w-full border rounded px-2 py-1" value="10000" />
+          </div>
+          <div>
+            <span class="block text-gray-500">Yield Médio Mensal (%)</span>
+            <input id="yield" type="number" step="0.01" class="w-full border rounded px-2 py-1" value="1" />
+          </div>
+          <div>
+            <span class="block text-gray-500">Patrimônio Inicial (R$)</span>
+            <input id="patrimonioInicial" type="number" class="w-full border rounded px-2 py-1" value="17000" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Patrimônio Estimado -->
+      <div class="col-span-4 bg-emerald-600 text-white rounded-xl shadow flex flex-col items-center justify-center">
+        <span class="text-sm mb-1">Patrimônio Estimado</span>
+        <span id="patrimonioEstimado" class="text-2xl font-bold">R$ 1.009.410,47</span>
+      </div>
+
+      <!-- Indexadores -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4 text-xs">
+        <h2 class="text-sm font-semibold mb-3">Indexadores</h2>
+        <div class="space-y-1">
+          <div class="flex justify-between"><span>CDI</span><span>14,90%</span></div>
+          <div class="flex justify-between"><span>Taxa Selic</span><span>15,00%</span></div>
+          <div class="flex justify-between text-emerald-600 font-semibold">
+            <span>Sua Carteira</span><span>13,13%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela Regressiva IR -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4 text-xs">
+        <h2 class="text-sm font-semibold mb-3">Faixas de Dedução do IR (Tabela Regressiva)</h2>
+        <table class="w-full text-center border">
+          <thead class="bg-emerald-50">
+            <tr>
+              <th class="border px-1 py-1">Período</th>
+              <th class="border px-1 py-1">Alíquota</th>
+              <th class="border px-1 py-1">CDI</th>
+              <th class="border px-1 py-1">Selic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-1 py-1">Até 180 dias</td>
+              <td class="border px-1 py-1">22,50%</td>
+              <td class="border px-1 py-1">11,55%</td>
+              <td class="border px-1 py-1">11,63%</td>
+            </tr>
+            <tr>
+              <td class="border px-1 py-1">181 a 360 dias</td>
+              <td class="border px-1 py-1">20,00%</td>
+              <td class="border px-1 py-1">12,00%</td>
+              <td class="border px-1 py-1">12,02%</td>
+            </tr>
+            <tr>
+              <td class="border px-1 py-1">361 a 720 dias</td>
+              <td class="border px-1 py-1">17,50%</td>
+              <td class="border px-1 py-1">12,09%</td>
+              <td class="border px-1 py-1">12,38%</td>
+            </tr>
+            <tr>
+              <td class="border px-1 py-1">+ de 720 dias</td>
+              <td class="border px-1 py-1">15,00%</td>
+              <td class="border px-1 py-1">12,67%</td>
+              <td class="border px-1 py-1">12,75%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Linha do Tempo da Liberdade -->
+      <div class="col-span-8 bg-white rounded-xl shadow p-4 text-xs flex items-center justify-between">
+        <div class="max-w-md">
+          <h2 class="text-sm font-semibold mb-2">Linha do Tempo da Liberdade</h2>
+          <p id="textoLiberdade" class="text-gray-700">
+            Olá, Lucas Guimarães, para atingir sua independência financeira, faltam 17 anos e 8 meses. Aos 47 anos, você poderá viver da renda do seu próprio patrimônio.
+          </p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button id="recalcular" class="px-4 py-2 bg-emerald-600 text-white rounded text-xs">
+            Recalcular projeção
+          </button>
+        </div>
+      </div>
+
+      <!-- Comparação Carteira x CDI/Selic -->
+      <div class="col-span-4 bg-white rounded-xl shadow p-4 text-xs">
+        <h2 class="text-sm font-semibold mb-3">Carteira x CDI / Selic</h2>
+        <table class="w-full text-center border mb-3">
+          <thead class="bg-emerald-50">
+            <tr>
+              <th class="border px-1 py-1">Período</th>
+              <th class="border px-1 py-1">Carteira x CDI</th>
+              <th class="border px-1 py-1">Carteira x Selic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-1 py-1">Até 180 dias</td>
+              <td class="border px-1 py-1 text-emerald-600">1,58%</td>
+              <td class="border px-1 py-1 text-emerald-600">1,51%</td>
+            </tr>
+            <tr>
+              <td class="border px-1 py-1">181 a 360 dias</td>
+              <td class="border px-1 py-1 text-emerald-600">1,21%</td>
+              <td class="border px-1 py-1 text-emerald-600">1,13%</td>
+            </tr>
+            <tr>
+              <td class="border px-1 py-1">361 a 720 dias</td>
+              <td class="border px-1 py-1 text-emerald-600">1,02%</td>
+              <td class="border px-1 py-1 text-emerald-600">0,96%</td>
+            </tr>
+            <tr>
+              <td class="border px-1 py-1">+ de 720 dias</td>
+              <td class="border px-1 py-1 text-emerald-600">0,47%</td>
+              <td class="border px-1 py-1 text-emerald-600">0,38%</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex justify-between">
+          <button class="px-3 py-1 bg-emerald-600 text-white rounded text-xs">Próximo ao CDI</button>
+          <button class="px-3 py-1 bg-emerald-600 text-white rounded text-xs">Próximo à Selic</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interatividade -->
+  <script>
+    function formatCurrency(value) {
+      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function calcularPatrimonio() {
+      const aporte = Number(document.getElementById('aportes').value || 0);
+      const yieldMensal = Number(document.getElementById('yield').value || 0) / 100;
+      const inicial = Number(document.getElementById('patrimonioInicial').value || 0);
+
+      // projeção bem simples: 20 anos de aportes mensais
+      const meses = 20 * 12;
+      let montante = inicial;
+      for (let i = 0; i < meses; i++) {
+        montante = montante * (1 + yieldMensal) + aporte;
+      }
+
+      document.getElementById('patrimonioEstimado').textContent = formatCurrency(montante);
+      atualizarObjetivo(montante);
+      atualizarLinhaTempo(montante);
+    }
+
+    function atualizarObjetivo(patrimonio) {
+      const objetivo = Number(document.getElementById('objetivo').value || 1);
+      const perc = Math.max(0, Math.min(100, (patrimonio / (objetivo * 1000)) * 100));
+      const percText = perc.toFixed(1).replace('.', ',') + '%';
+      document.getElementById('progressPath').setAttribute('stroke-dasharray', perc.toFixed(1) + ', 100');
+      document.getElementById('progressText').textContent = percText;
+    }
+
+    function atualizarLinhaTempo(patrimonio) {
+      const salario = Number(document.getElementById('salario').value || 0);
+      const yieldMensal = Number(document.getElementById('yield').value || 0) / 100;
+      const rendimentoMensal = patrimonio * yieldMensal;
+
+      let anosRestantes = 20;
+      if (salario > 0 && rendimentoMensal > 0) {
+        const fator = salario / rendimentoMensal;
+        anosRestantes = Math.max(1, Math.min(30, fator * 10));
+      }
+
+      const nascimento = new Date(document.getElementById('nascimento').value);
+      const hoje = new Date();
+      const idadeHoje = hoje.getFullYear() - nascimento.getFullYear();
+      const idadeLiberdade = Math.round(idadeHoje + anosRestantes);
+
+      document.getElementById('textoLiberdade').textContent =
+        `Olá, Lucas Guimarães, para atingir sua independência financeira, ` +
+        `faltam aproximadamente ${anosRestantes.toFixed(1).replace('.', ',')} anos. ` +
+        `Por volta dos ${idadeLiberdade} anos, você poderá viver da renda do seu próprio patrimônio.`;
+    }
+
+    document.getElementById('recalcular').addEventListener('click', calcularPatrimonio);
+    ['aportes', 'yield', 'patrimonioInicial', 'salario', 'objetivo', 'nascimento']
+      .forEach(id => document.getElementById(id).addEventListener('change', calcularPatrimonio));
+
+    // cálculo inicial
+    calcularPatrimonio();
+  </script>
+</body>
+</html>
