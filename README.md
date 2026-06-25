@@ -21,10 +21,8 @@ O site é hospedado na **Vercel**. Qualquer push na branch `main` dispara o depl
 O botão de compra redireciona para o checkout do produto na Hotmart:
 
 ```
-https://hotmart.com/pt-br/marketplace/produtos/SEU-PRODUTO
+https://pay.hotmart.com/A106486647Y
 ```
-
-> Substitua a URL acima pelo link real do produto quando disponível.
 
 ## Desenvolvimento Local
 
