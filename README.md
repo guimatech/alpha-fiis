@@ -9,7 +9,11 @@ Este repositório contém a página de vendas (landing page) que apresenta o pro
 ## Estrutura
 
 ```
-index.html    → Landing page com CTA para compra na Hotmart
+index.html    → Landing page e sete módulos
+style.css     → Layout e identidade visual
+motion.css    → Animações e visualizador de imagens
+app.js        → Navegação entre módulos e zoom
+assets/images → Capturas reais do sistema
 ```
 
 ## Deploy
@@ -31,5 +35,5 @@ Basta abrir o `index.html` no navegador — não há dependências de build.
 ## Tecnologias
 
 - HTML5
-- Tailwind CSS (via CDN)
+- CSS responsivo, com suporte a movimento reduzido
 - JavaScript vanilla
